@@ -1,8 +1,8 @@
 /*
 Table of Contents
 
--Day of Quarter Case Created - Based on Clari Feb-Jan FY
--Day of Quarter Case Closed - Based on Clari Feb-Jan FY
+-Day of Quarter Case Created - Based on Feb-Jan FY
+-Day of Quarter Case Closed - Based on Feb-Jan FY
 
 */
 
@@ -15,6 +15,7 @@ Table of Contents
 /* Identify number of days in the quarter. This accounts for a Feb-Jan fiscal year and takes into account leap years*/
 CASE(
     MONTH ( DATEVALUE(CREATED_DATEONLY) ),
+    1, 91,
     2, IF(OR(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 100 ) != 0)),90,89),
     3, IF(OR(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 100 ) != 0)),90,89),
     4, IF(OR(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 100 ) != 0)),90,89),
@@ -26,7 +27,6 @@ CASE(
     10, 91,
     11, 91,
     12, 91,
-    1, 91,
     NULL
     )
  -
@@ -61,9 +61,10 @@ DATEVALUE(CREATED_DATEONLY) )
 
 CASE(
     MONTH ( DATEVALUE(CLOSED_DATEONLY) ),
-    2, IF(OR(MOD( YEAR( DATEVALUE(CLOSED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CLOSED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CLOSED_DATEONLY) ), 100 ) != 0)),90,89),
-    3, 89,
-    4, 89,
+    1, 91,
+    2, IF(OR(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 100 ) != 0)),90,89),
+    3, IF(OR(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 100 ) != 0)),90,89),
+    4, IF(OR(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 400 ) = 0,AND(MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 4 ) = 0,MOD( YEAR( DATEVALUE(CREATED_DATEONLY) ), 100 ) != 0)),90,89),
     5, 91,
     6, 91,
     7, 91,
@@ -72,7 +73,6 @@ CASE(
     10, 91,
     11, 91,
     12, 91,
-    1, 91,
     NULL
     )
  -
